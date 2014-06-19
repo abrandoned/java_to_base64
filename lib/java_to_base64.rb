@@ -8,7 +8,7 @@ end
 
 module JavaToBase64
   def self.included(klass)
-    unless klass.java_kind_of?(::Java::JavaIo::Serializable)
+    unless java_instance_of?(klass, ::Java::JavaIo::Serializable)
       warn <<-SERIALIZABLE
         To include JavaToBase64 in a Java class you must implement java.io.Serializable
       SERIALIZABLE
@@ -18,6 +18,10 @@ module JavaToBase64
       include ::JavaToBase64::InstanceMethods
       extend ::JavaToBase64::ClassMethods
     end
+  end
+
+  def self.java_instance_of?(klass, klass_or_module)
+    return klass.java_kind_of?(klass_or_module) || klass.included_modules.include?(klass_or_module)
   end
 
   module InstanceMethods
