@@ -1,6 +1,10 @@
 # JavaToBase64
 
-TODO: Write a gem description
+I got tired of writing the apache commons base64 serializer/deserializer into each app that I need to serialize
+raw Java objects into some type of database/cache. If you include `JavaToBase64` into a Java class it will then
+respond to `to_base64` (which is URL safe) and the class will respond to `from_base64`.
+
+As long as the java class implements serializable all will be well with the world.
 
 ## Installation
 
@@ -18,7 +22,16 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+```ruby
+  require 'java_to_base64'
+
+  class Java::JavaLang::String
+    include JavaToBase64
+  end
+
+  string = ::Java::JavaLang::String.new("derp")
+  new_string = ::Java::JavaLang::String.from_base64(string.to_base64)
+```
 
 ## Contributing
 
