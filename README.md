@@ -6,6 +6,9 @@ respond to `to_base64` (which is URL safe) and the class will respond to `from_b
 
 As long as the java class implements serializable all will be well with the world.
 
+This gem has it's own version of apache commons codec, but if you have another version already loaded it will
+not load the packaged version (through the use of `i_can_has_java_class`)
+
 ## Installation
 
 Add this line to your application's Gemfile:
