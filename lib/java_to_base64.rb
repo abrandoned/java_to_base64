@@ -21,7 +21,7 @@ module JavaToBase64
   end
 
   def self.java_instance_of?(klass, klass_or_module)
-    return klass.java_kind_of?(klass_or_module) || klass.included_modules.include?(klass_or_module)
+    return klass.kind_of?(klass_or_module) || klass.included_modules.include?(klass_or_module)
   end
 
   module InstanceMethods
